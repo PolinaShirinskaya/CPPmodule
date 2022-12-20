@@ -6,7 +6,7 @@
 /*   By: adian <adian@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 19:10:56 by adian             #+#    #+#             */
-/*   Updated: 2022/12/19 19:24:18 by adian            ###   ########.fr       */
+/*   Updated: 2022/12/20 12:51:27 by adian            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,64 +14,67 @@
 
 Contact::Contact(void) //конструктор по умолчанию
 {
-    _firstName = "";
-    _lastName = "";
-    _nickName = "";
-    _phoneNumber = "";
-    _darkestSecret = "";
+    firstName_ = "";
+    lastName_ = "";
+    nickName_ = "";
+    phoneNumber_ = "";
+    darkestSecret_ = "";
     return;
 }
 
-Contact::~Contact(void)
+Contact::~Contact(void) //деструктор
 {
     return;
 }
 
-void Contact::_setField(std::string field, std::string value)
+//сеттер - присваивает значение переменным класса Contact
+void Contact::set_field(std::string field, std::string value)
 {
 	if (field == "first name")
-		_firstName = value;
+		firstName_ = value;
 	else if (field == "last name")
-		_lastName = value;
+		lastName_ = value;
 	else if (field == "nickname")
-		_nickName = value;
+		nickName_ = value;
 	else if (field == "phone number")
-		_phoneNumber = value;
+		phoneNumber_ = value;
 	else if (field == "darkest secret")
-		_darkestSecret = value;
+		darkestSecret_ = value;
 }
 
-std::string Contact::_getField(std::string field)
+
+//геттер - возвращает значение переменных класса Contact
+std::string Contact::get_field(std::string field)
 {
 	if (field == "first name")
-		return (_firstName);
+		return (firstName_);
 	else if (field == "last name")
-		return (_lastName);
+		return (lastName_);
 	else if (field == "nickname")
-		return (_nickName);
+		return (nickName_);
 	else if (field == "phone number")
-		return (_phoneNumber);
+		return (phoneNumber_);
 	else if (field == "darkest secret")
-		return (_darkestSecret);
+		return (darkestSecret_);
 	return ("");
 }
 
-void Contact::_printField(void)
+void Contact::PrintField(void)
 {
-	std::cout << "First name: " << _firstName << std::endl;
-	std::cout << "Last name: " << _lastName << std::endl;
-	std::cout << "Nickname: " << _nickName << std::endl;
-	std::cout << "Phone number: " << _phoneNumber << std::endl;
-	std::cout << "Darkest secret: " << _darkestSecret << std::endl;
+	std::cout << "First name: " << firstName_ << std::endl;
+	std::cout << "Last name: " << lastName_ << std::endl;
+	std::cout << "Nickname: " << nickName_ << std::endl;
+	std::cout << "Phone number: " << phoneNumber_ << std::endl;
+	std::cout << "Darkest secret: " << darkestSecret_ << std::endl;
 }
 
-int Contact::_isEmpty(void)
+int Contact::IsEmpty(void)
 {
-	if (_firstName == ""
-		|| _lastName == ""
-		|| _nickName == ""
-		|| _phoneNumber == ""
-		|| _darkestSecret == "")
+	if (firstName_ == ""
+		|| lastName_ == ""
+		|| nickName_ == ""
+		|| phoneNumber_ == ""
+		|| darkestSecret_ == "")
 		return 1;
 	return 0;
 }

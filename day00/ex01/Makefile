@@ -1,6 +1,8 @@
-NAME	= megaphone
+NAME	= phonebook
 
-SRCS	= megaphone.cpp
+SRCS	= main.cpp PhoneBook.class.cpp Contact.class.cpp
+
+HEADERS = PhoneBook.class.hpp Contact.class.hpp
 
 CC		= clang++
 
@@ -12,7 +14,7 @@ OBJS	= $(SRCS:.cpp=.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
+$(NAME): $(OBJS) $(HEADERS)
 		@$(CC) $(FLAGS) $(OBJS) -o $(NAME)
 		@echo "\033[1;35mCompiled"
 

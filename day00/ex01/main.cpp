@@ -6,7 +6,7 @@
 /*   By: adian <adian@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 18:07:54 by adian             #+#    #+#             */
-/*   Updated: 2022/12/19 18:22:44 by adian            ###   ########.fr       */
+/*   Updated: 2022/12/20 11:00:47 by adian            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ int	main(void)
 		std::cout << "Enter your command (UPPERSPASE): ";
 		std::cin >> command;
 		if (command == "ADD")
-			phonebook.addContact();
+			phonebook.AddContact();
 		else if (command == "SEARCH")
-			phonebook.searchContact();
+			phonebook.SearchContact();
 		else if (command == "EXIT")
 			break;
 		else
