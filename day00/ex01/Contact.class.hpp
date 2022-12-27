@@ -20,7 +20,7 @@ public:
         void        PrintField(void);
         int         IsEmpty(void);
 
-        Contact(void); 
+        Contact(void);
         ~Contact(void);
 };
 
