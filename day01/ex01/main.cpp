@@ -1,40 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.cpp                                         :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adian <adian@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/26 17:07:40 by adian             #+#    #+#             */
-/*   Updated: 2022/12/27 13:38:47 by adian            ###   ########.fr       */
+/*   Created: 2022/12/27 13:43:08 by adian             #+#    #+#             */
+/*   Updated: 2022/12/27 14:50:19 by adian            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
 
-Zombie::Zombie(std::string name)
+int main(void)
 {
-    this->_name = name;
-    std::cout
-        << _name
-        << " is born for brainZeat"
-        << std::endl;
-}
+    int     size_horde;
+    int     cout;
 
-Zombie::~Zombie()
-{
-    std::cout
-        << _name
-        <<": "
-        << "I'm dead...again n again"
-        << std::endl;
-}
-
-void Zombie::announce()
-{
-    std::cout
-        << _name
-        << ": BrainzzzzzZ..."
-        << std::endl;
-    return;
+    size_horde = 5;
+    cout = 0;
+    Zombie *horde = zombieHorde(size_horde, "Zombie_with_name");
+    while (cout <= size_horde)
+        horde[cout++].announce();
+    delete [] horde;
+    return 0;
 }
