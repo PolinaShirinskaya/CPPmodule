@@ -1,43 +1,34 @@
-UNAME_S = $(shell uname -s)
+NAME	= no_weapon
 
-NAME = output
-
-SRC = $(wildcard *.cpp)
-
-CC = clang++
-
-RM = rm -rf
-
-OBJ = $(SRC:.cpp=.o)
+SRCS	= $(wildcard *.cpp)
 
 HEADERS = $(wildcard *.hpp)
 
-ifeq ($(UNAME_S), Linux)
-	CPPFLAGS = -g -Wall -Wextra -Werror -I. -std=c++98
-else
-	CPPFLAGS = -Wall -Wextra -Werror -I. -std=c++98 -fsanitize=address
-endif
+CC		= clang++
 
+FLAGS	= -Wall -Wextra -Werror -std=c++98 -I.
 
-all: $(NAME) run
+RM		= rm -f
 
+OBJS	= $(SRCS:.cpp=.o)
 
-$(NAME): $(OBJ) ${HEADERS} Makefile
-	@$(CC) $(CPPFLAGS) $(OBJ) -o $(NAME)
-	@echo "\033[1;32mCompiled"
+all: $(NAME)
+
+$(NAME): $(OBJS) $(HEADERS)
+		@$(CC) $(FLAGS) $(OBJS) -o $(NAME)
+		@echo "\033[1;35mCompiled"
 
 %.o: %.cpp
-	@$(CC) $(FLAGS) -c $< -o $@
-	@echo -n "\033[1;35m"
+		@$(CC) $(FLAGS) -c $< -o $@
 
 clean:
-	@$(RM) $(OBJ)
-	@echo "\033[1;31mClean"
+		@$(RM) $(OBJS)
+		@echo "\033[1;34mClean"
 
 fclean: clean
-	@$(RM) $(NAME)
-	@echo "\033[1;31mFclean"
+		@$(RM) $(NAME)
+		@echo "\033[1;34mFclean"
 
 re: fclean all
 
-.PHONY: all clean fclean re run
+.PHONY: all clean fclean re
