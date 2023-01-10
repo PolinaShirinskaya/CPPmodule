@@ -5,19 +5,30 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: adian <adian@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/26 16:59:55 by adian             #+#    #+#             */
-/*   Updated: 2023/01/10 11:41:50 by adian            ###   ########.fr       */
+/*   Created: 2023/01/10 17:58:22 by adian             #+#    #+#             */
+/*   Updated: 2023/01/10 19:20:36 by adian            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#include "Karen.hpp"
 
-int main(void)
+int	main(int argc, char **argv)
 {
-	Zombie *object;
-
-	object = newZombie("HeapZomb");
-	object->announce();
-	randomChump("StackZomb");
-	delete object;
+	Karen		karen;
+	std::string	level;
+	
+	if (argc != 2)
+	{
+		std::cout << "Please enter: ./a.out [DEBUG || INFO || WARNING || ERROR || something]" << std::endl;
+		return (1);
+	}
+	level = argv[1];
+	if ("DEBUG" != level && "INFO" != level
+		&& "WARNING" != level && "ERROR" != level)
+	{
+		std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
+		return (1);
+	}
+	karen.complain(level);
+	return (0);
 }

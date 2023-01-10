@@ -6,7 +6,7 @@
 /*   By: adian <adian@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 14:13:23 by adian             #+#    #+#             */
-/*   Updated: 2022/12/29 14:15:53 by adian            ###   ########.fr       */
+/*   Updated: 2023/01/10 12:27:20 by adian            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,15 @@ HumanB::~HumanB()
 
 void HumanB::attack(void)
 {
-    std::cout
+    if (!_weapon)
+        std::cout << _name << " has no weapon yet!" << std::endl;
+    else
+    {
+        std::cout
         << _name
         << " attacks with his "
         << _weapon->getType() << std::endl;
+    }   
 }
 
 void HumanB::setWeapon(Weapon &weapon)
