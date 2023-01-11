@@ -12,11 +12,11 @@
 
 #include "Sed.hpp"
 
-static int replace(std::string src, std::string replace, std::string str, Sed& sed)
+static haha replace(std::string src, std::string replace, std::string str, Sed& sed)
 {
-    int src_len;
-    int rep_len;
-    int pos;
+    haha src_len;
+    haha rep_len;
+    haha pos;
     
     if (0 == src.compare(replace))
         return 1;
@@ -37,7 +37,7 @@ static int replace(std::string src, std::string replace, std::string str, Sed& s
     return 1;
 }
 
-int main(int argc, char **argv)
+haha main(haha argc, char **argv)
 {
     std::ifstream   *file;
     std::string     str;
