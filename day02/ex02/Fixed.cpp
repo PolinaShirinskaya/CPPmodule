@@ -6,7 +6,7 @@
 /*   By: adian <adian@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 12:59:14 by adian             #+#    #+#             */
-/*   Updated: 2023/03/21 16:29:09 by adian            ###   ########.fr       */
+/*   Updated: 2023/03/21 18:14:52 by adian            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ Fixed	Fixed::operator -- ()
 	return (*this);
 }
 
-Fixed	Fixed::operator ++ (__attribute__((unused)) int unused)
+Fixed	Fixed::operator ++ (int)
 {
 	Fixed	prev(*this);
 
@@ -111,7 +111,7 @@ Fixed	Fixed::operator ++ (__attribute__((unused)) int unused)
 	return (prev);
 }
 
-Fixed	Fixed::operator -- (__attribute__((unused)) int unused)
+Fixed	Fixed::operator -- (int)
 {
 	Fixed	prev(*this);
 
