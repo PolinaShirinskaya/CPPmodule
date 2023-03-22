@@ -6,90 +6,89 @@
 /*   By: adian <adian@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 13:19:14 by adian             #+#    #+#             */
-/*   Updated: 2023/03/22 14:11:07 by adian            ###   ########.fr       */
+/*   Updated: 2023/03/22 18:30:04 by adian            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
 
 int main()
 {
     std::cout << "----------------------------------------------------------------------\n";
 	std::cout << "--                  Initiation of ClapTrap series                   --\n";
 	std::cout << "----------------------------------------------------------------------\n";
-	std::cout << ">> Initiation ClapTrap claptrap_1..." << std::endl; 
-	ClapTrap	claptrap_1("Darth Vader");
+	std::cout << ">> Initiation ScavTrap scavtrap_1..." << std::endl; 
+	ScavTrap	scavtrap_1("Master Yoda");
     
-    std::cout << ">> Initiation ClapTrap claptrap_2..." << std::endl; 
-	ClapTrap	claptrap_2("Luke Skywalker");
+	std::cout << "----------------------------------------------------------------------\n";
+    std::cout << ">> Initiation ScavTrap scavtrap_2..." << std::endl; 
+	ScavTrap	scavtrap_2("C-3PO");
 
-    std::cout << ">> Initiation ClapTrap claptrap_3..." << std::endl; 
-	ClapTrap	claptrap_3(claptrap_1);
+	std::cout << "----------------------------------------------------------------------\n";
+    std::cout << ">> Initiation ScavTrap scavtrap_3..." << std::endl; 
+	ScavTrap	scavtrap_3(scavtrap_1);
 
-    std::cout << ">> Initiation ClapTrap claptrap_4..." << std::endl; 
-	ClapTrap	claptrap_4;
-	claptrap_4 = claptrap_2;
+	std::cout << "----------------------------------------------------------------------\n";
+    std::cout << ">> Initiation ScavTrap scavtrap_4..." << std::endl; 
+	ScavTrap	scavtrap_4;
+	scavtrap_4 = scavtrap_2;
+	
 
 
 
     std::cout << "----------------------------------------------------------------------\n";
-	std::cout << "--                 Duel on Cloud City                               --\n";
+	std::cout << "--                            BigDuel                               --\n";
 	std::cout << "----------------------------------------------------------------------" << std::endl;
-    std::cout << claptrap_1 << "\n\n" << claptrap_2 << std::endl;
+    std::cout << scavtrap_1 << "\n\n" << scavtrap_2 << "\n\n";
+	std::cout << scavtrap_3 << "\n\n" << scavtrap_4 << std::endl;
 	std::cout << "----------------------------------------------------------------------" << std::endl;
     
-    claptrap_2.attack(claptrap_1.getName());
-	claptrap_1.takeDamage(claptrap_2.getAttackDamage());
+	
+    scavtrap_1.attack(scavtrap_2.getName());
+	scavtrap_2.takeDamage(scavtrap_1.getAttackDamage());
 
     std::cout << "----------------------------------------------------------------------" << std::endl;
-	std::cout << claptrap_1 << "\n\n" << claptrap_2 << std::endl;
+	std::cout << scavtrap_1 << "\n\n" << scavtrap_2 << std::endl;
 	std::cout << "----------------------------------------------------------------------" << std::endl;
 
-    claptrap_2.takeDamage(5);
+    scavtrap_2.takeDamage(60);
 
 	std::cout << "----------------------------------------------------------------------" << std::endl;
-	std::cout << claptrap_1 << "\n\n" << claptrap_2 << std::endl;
+	std::cout << scavtrap_1 << "\n\n" << scavtrap_2 << std::endl;
 	std::cout << "----------------------------------------------------------------------" << std::endl;
 
-	claptrap_2.beRepaired(2);
+	scavtrap_2.beRepaired(20);
 
 	std::cout << "----------------------------------------------------------------------" << std::endl;
-	std::cout << claptrap_1 << "\n\n" << claptrap_2 << std::endl;
+	std::cout << scavtrap_1 << "\n\n" << scavtrap_2 << std::endl;
 	std::cout << "----------------------------------------------------------------------" << std::endl;
 
-    claptrap_2.takeDamage(5);
+    scavtrap_2.takeDamage(60);
 
 	std::cout << "----------------------------------------------------------------------" << std::endl;
-	std::cout << claptrap_1 << "\n\n" << claptrap_2 << std::endl;
+	std::cout << scavtrap_1 << "\n\n" << scavtrap_2 << std::endl;
 	std::cout << "----------------------------------------------------------------------" << std::endl;
 
-    claptrap_2.attack(claptrap_1.getName());
-    claptrap_2.attack(claptrap_1.getName());
-    claptrap_2.attack(claptrap_1.getName());
-    claptrap_2.attack(claptrap_1.getName());
-    claptrap_2.attack(claptrap_1.getName());
-    claptrap_2.attack(claptrap_1.getName());
-    claptrap_2.attack(claptrap_1.getName());
-    claptrap_2.attack(claptrap_1.getName());
-    claptrap_2.attack(claptrap_1.getName());
-    claptrap_2.attack(claptrap_1.getName());
+	scavtrap_2.beRepaired(20);
 
 	std::cout << "----------------------------------------------------------------------" << std::endl;
-	std::cout << claptrap_1 << "\n\n" << claptrap_2 << std::endl;
+	std::cout << scavtrap_1 << "\n\n" << scavtrap_2 << std::endl;
 	std::cout << "----------------------------------------------------------------------" << std::endl;
 
-    claptrap_2.takeDamage(2);
+	scavtrap_1.guardGate();
+	scavtrap_1.guardGate();
+	scavtrap_1.guardGate();
+	scavtrap_1.guardGate();
+	scavtrap_1.guardGate();
+	
+	std::cout << "----------------------------------------------------------------------" << std::endl;
+	std::cout << scavtrap_1 << "\n\n" << scavtrap_2 << std::endl;
+	std::cout << "----------------------------------------------------------------------" << std::endl;
 
-	std::cout << "----------------------------------------------------------------------" << std::endl;
-	std::cout << claptrap_1 << "\n\n" << claptrap_2 << std::endl;
+   	std::cout << "----------------------------------------------------------------------\n";
+	std::cout << "--                           Destructor                             --\n";
 	std::cout << "----------------------------------------------------------------------" << std::endl;
 
-    claptrap_2.attack(claptrap_1.getName());
-    
-    std::cout << "----------------------------------------------------------------------\n";
-	std::cout << "--                 The force is with you, young Skywalker           --\n";
-    std::cout << "--                      But you're not a Jedi yet...                --\n";
-	std::cout << "----------------------------------------------------------------------" << std::endl;
-    
+
     return 0;
 }

@@ -6,7 +6,7 @@
 /*   By: adian <adian@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 20:51:22 by adian             #+#    #+#             */
-/*   Updated: 2023/03/22 18:37:12 by adian            ###   ########.fr       */
+/*   Updated: 2023/03/22 18:36:31 by adian            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ ClapTrap::ClapTrap(const ClapTrap &copy)
 {
     std::cout
         << VIOLET
-        << " Copy constructor called"
+        << " ClapTrap Copy constructor called"
         << NORMAL << std::endl;
     *this = copy;
 }
@@ -49,7 +49,7 @@ ClapTrap::~ClapTrap(void)
 {
 	std::cout
 		<< VIOLET
-		<< " Destructor called"
+		<< " ClapTrap Destructor called"
 		<< NORMAL << std::endl;
 }
 
@@ -61,7 +61,7 @@ ClapTrap&	ClapTrap::operator = (ClapTrap const &copy)
 	_attack_damage = copy.getAttackDamage();
 	std::cout
         << VIOLET
-		<< " Copy assignment operator called"
+		<< " ClapTrap Copy assignment operator called"
 		<< NORMAL << std::endl;
 	return (*this);
 }
