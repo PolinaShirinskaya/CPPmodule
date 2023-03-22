@@ -6,7 +6,7 @@
 /*   By: adian <adian@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 20:51:22 by adian             #+#    #+#             */
-/*   Updated: 2023/03/21 21:15:59 by adian            ###   ########.fr       */
+/*   Updated: 2023/03/22 13:55:16 by adian            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 ClapTrap::ClapTrap()
 {
     std::cout
-        << "No name" << VIOLET
+        << VIOLET
         << " ClapTrap DEFAULT constructor called" 
         << NORMAL << std::endl;
     _name = "NoName";
@@ -27,7 +27,7 @@ ClapTrap::ClapTrap()
 ClapTrap::ClapTrap(std::string name)
 {
     std::cout
-        << name << VIOLET
+        << VIOLET
         << " ClapTrap constructor called"
         << NORMAL << std::endl;
     _name = name;
@@ -39,7 +39,7 @@ ClapTrap::ClapTrap(std::string name)
 ClapTrap::ClapTrap(const ClapTrap &copy)
 {
     std::cout
-        << copy.getName() << VIOLET
+        << VIOLET
         << " Copy constructor called"
         << NORMAL << std::endl;
     *this = copy;
@@ -48,7 +48,7 @@ ClapTrap::ClapTrap(const ClapTrap &copy)
 ClapTrap::~ClapTrap(void)
 {
 	std::cout
-		<< _name << VIOLET
+		<< VIOLET
 		<< " Destructor called"
 		<< NORMAL << std::endl;
 }
@@ -74,3 +74,96 @@ unsigned int	ClapTrap::getEnergyPoints(void) const { return (_energy_points); }
 
 unsigned int	ClapTrap::getAttackDamage(void) const { return (_attack_damage); }
 
+void    ClapTrap::attack(const std::string& target)
+{
+    if (this->getHitPoints() <= 0)
+    {
+        std::cout 
+            << RED << "ClapTrap "
+            << this->getName()
+            << " has no HitPoints. R.I.P. Can't attack!"
+            << NORMAL << std::endl;
+            return ;
+    }
+    if (this->getEnergyPoints() <= 0)
+    {
+        std::cout 
+            << RED << "ClapTrap "
+            << this->getName()
+            << " has no EnregyPoints. It's tired. Can't attack!"
+            << NORMAL << std::endl;
+            return ;
+    }
+    
+    std::cout 
+        << BLUE << "ClapTrap "
+        << this->getName() << " attacks " << target
+        << " , causing " << this->getAttackDamage() << " points of damage!"
+        << NORMAL << std::endl;
+    this->_energy_points -= 1;
+    return ;
+}
+
+void    ClapTrap::takeDamage(unsigned int amount)
+{
+    if (this->getHitPoints() <= 0)
+    {
+        std::cout 
+            << RED << "ClapTrap "
+            << this->getName()
+            << " has no HitPoints. R.I.P."
+            << NORMAL << std::endl;
+            return ;
+    }
+
+    std::cout 
+        << CYAN << "ClapTrap "
+        << this->getName() << " take damage. "
+        << amount << " HitPoints were lost!"
+        << NORMAL << std::endl;
+    if (this->_hit_points - amount <= 0)
+        _hit_points = 0;
+    else
+        this->_hit_points -= amount;
+    return ;
+}
+
+void    ClapTrap::beRepaired(unsigned int amount)
+{
+    if (this->getHitPoints() <= 0)
+	{
+		std::cout 
+            << RED << "ClapTrap " 
+            << this->getName() 
+            << " has no HitPoints. R.I.P. It can't be repaired!!!"
+		    << NORMAL << std::endl;
+		return ;
+	}
+	if (this->getEnergyPoints() <= 0)
+	{
+		std::cout 
+            << RED << "ClapTrap " 
+            << this->getName() 
+            << " has no EnergyPoints. It's tired. It can't be repaired!!!"
+            << NORMAL << std::endl;
+		return ;
+	}
+	std::cout 
+        << GREEN << "ClapTrap "
+        << this->getName() 
+        << " was repaired. "
+        << amount 
+        << " Hit Points have been restored." 
+        << NORMAL << std::endl;
+	this->_hit_points += amount;
+	this->_energy_points -= 1;
+	return ;
+}
+
+std::ostream&   operator << (std::ostream &out, const  ClapTrap &claptrap)
+{
+	out << "ClapTrap: " << claptrap.getName();
+	out << "\nHit Points: " << claptrap.getHitPoints();
+	out << "\nEnergy Points: " << claptrap.getEnergyPoints();
+	return (out);
+}

@@ -6,11 +6,11 @@
 /*   By: adian <adian@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 20:45:26 by adian             #+#    #+#             */
-/*   Updated: 2023/03/21 21:11:10 by adian            ###   ########.fr       */
+/*   Updated: 2023/03/22 13:28:50 by adian            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CLAPNTAP_HPP
+#ifndef CLAPTRAP_HPP
 # define CLAPTRAP_HPP
 # include <iostream>
 
@@ -19,6 +19,7 @@
 # define GREEN	"\033[1;32m"
 # define BLUE	"\033[1;34m"
 # define VIOLET	"\033[1;35m"
+# define CYAN	"\033[1;36m"
 
 class   ClapTrap
 {
@@ -43,9 +44,8 @@ class   ClapTrap
 		unsigned int	getHitPoints(void) const;
 		unsigned int	getEnergyPoints(void) const;
 		unsigned int	getAttackDamage(void) const;
-        
-        
-    
 };
+
+std::ostream& operator << (std::ostream &out, const ClapTrap &claptrap);
 
 #endif
