@@ -6,7 +6,7 @@
 /*   By: adian <adian@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 13:19:14 by adian             #+#    #+#             */
-/*   Updated: 2023/03/22 18:30:04 by adian            ###   ########.fr       */
+/*   Updated: 2023/03/23 18:45:06 by adian            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int main()
 {
     std::cout << "----------------------------------------------------------------------\n";
-	std::cout << "--                  Initiation of ClapTrap series                   --\n";
+	std::cout << "--                  Initiation of ScavTrap series                   --\n";
 	std::cout << "----------------------------------------------------------------------\n";
 	std::cout << ">> Initiation ScavTrap scavtrap_1..." << std::endl; 
 	ScavTrap	scavtrap_1("Master Yoda");
