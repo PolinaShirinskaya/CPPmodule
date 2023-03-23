@@ -6,7 +6,7 @@
 /*   By: adian <adian@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 20:51:22 by adian             #+#    #+#             */
-/*   Updated: 2023/03/22 18:36:31 by adian            ###   ########.fr       */
+/*   Updated: 2023/03/23 17:06:19 by adian            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,15 @@ unsigned int	ClapTrap::getHitPoints(void) const { return (_hit_points); }
 unsigned int	ClapTrap::getEnergyPoints(void) const { return (_energy_points); }
 
 unsigned int	ClapTrap::getAttackDamage(void) const { return (_attack_damage); }
+
+
+void	ClapTrap::setName(const std::string name) { _name = name; }
+
+void    ClapTrap::setHitPoints(unsigned int point) { _hit_points = point; }
+
+void    ClapTrap::setEnergyPoints(unsigned int point) { _energy_points = point; }
+
+void    ClapTrap::setAttackDamage(unsigned int point) { _attack_damage = point; }
 
 void    ClapTrap::attack(const std::string& target)
 {

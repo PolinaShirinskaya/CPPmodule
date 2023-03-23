@@ -6,7 +6,7 @@
 /*   By: adian <adian@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 13:19:14 by adian             #+#    #+#             */
-/*   Updated: 2023/03/22 14:11:07 by adian            ###   ########.fr       */
+/*   Updated: 2023/03/23 17:19:40 by adian            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,15 @@ int main()
 	std::cout << "----------------------------------------------------------------------\n";
 	std::cout << ">> Initiation ClapTrap claptrap_1..." << std::endl; 
 	ClapTrap	claptrap_1("Darth Vader");
+	std::cout << "----------------------------------------------------------------------\n";
     
     std::cout << ">> Initiation ClapTrap claptrap_2..." << std::endl; 
 	ClapTrap	claptrap_2("Luke Skywalker");
+	std::cout << "----------------------------------------------------------------------\n";
 
     std::cout << ">> Initiation ClapTrap claptrap_3..." << std::endl; 
 	ClapTrap	claptrap_3(claptrap_1);
+	std::cout << "----------------------------------------------------------------------\n";
 
     std::cout << ">> Initiation ClapTrap claptrap_4..." << std::endl; 
 	ClapTrap	claptrap_4;

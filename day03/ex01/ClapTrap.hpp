@@ -6,7 +6,7 @@
 /*   By: adian <adian@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 20:45:26 by adian             #+#    #+#             */
-/*   Updated: 2023/03/22 16:47:44 by adian            ###   ########.fr       */
+/*   Updated: 2023/03/23 17:04:35 by adian            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,11 @@ class   ClapTrap
 		unsigned int	getHitPoints(void) const;
 		unsigned int	getEnergyPoints(void) const;
 		unsigned int	getAttackDamage(void) const;
+
+		void			setName(std::string name);
+		void			setHitPoints(unsigned int point);
+		void            setEnergyPoints(unsigned int point);
+		void            setAttackDamage(unsigned int points);
 };
 
 std::ostream& operator << (std::ostream &out, const ClapTrap &claptrap);

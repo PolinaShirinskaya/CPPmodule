@@ -6,42 +6,45 @@
 /*   By: adian <adian@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 16:21:31 by adian             #+#    #+#             */
-/*   Updated: 2023/03/22 18:28:57 by adian            ###   ########.fr       */
+/*   Updated: 2023/03/23 17:17:31 by adian            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScavTrap.hpp"
 
-ScavTrap::ScavTrap() : ClapTrap()
+ScavTrap::ScavTrap() : ClapTrap("NoName")
 {
     std::cout
         << VIOLET
+        << " NoName"
         << " ScavTrap DEFAULT constructor called "
         << NORMAL << std::endl;
 
-    this->_name = "NoName";
-    this->_hit_points = 100;
-    this->_energy_points = 50;
-    this->_attack_damage = 20;
+    setName("NoName");
+    setHitPoints(100);
+    setEnergyPoints(50);
+    setAttackDamage(20);
 }
 
 ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 {
     std::cout
         << VIOLET
+        << name
         << " ScavTrap constructor called "
         << NORMAL << std::endl;
 
-    this->_name = name;
-    this->_hit_points = 100;
-    this->_energy_points = 50;
-    this->_attack_damage = 20;
+    setName(name);
+    setHitPoints(100);
+    setEnergyPoints(50);
+    setAttackDamage(20);
 }
 
-ScavTrap::ScavTrap(const ScavTrap &copy)
+ScavTrap::ScavTrap(const ScavTrap &copy) : ClapTrap(copy)
 {
     std::cout
         << VIOLET
+        << copy.getName()
         << " ScavTrap copy constructor called"
         << NORMAL << std::endl;
     *this = copy;
@@ -55,10 +58,10 @@ ScavTrap& ScavTrap::operator=(ScavTrap const &copy)
         << NORMAL << std::endl;
 	if (this == &copy)
 		return (*this);
-	this->_name = copy.getName();
-	this->_hit_points = copy.getHitPoints();
-	this->_energy_points = copy.getEnergyPoints();
-	this->_attack_damage = copy.getAttackDamage();
+	setName(copy.getName());
+	setHitPoints(copy.getHitPoints());
+	setEnergyPoints(copy.getEnergyPoints());
+	setAttackDamage(copy.getAttackDamage());
 	return (*this);
 }
 
