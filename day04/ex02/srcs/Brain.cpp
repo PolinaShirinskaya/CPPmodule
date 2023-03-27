@@ -6,7 +6,7 @@
 /*   By: adian <adian@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 11:22:10 by adian             #+#    #+#             */
-/*   Updated: 2023/03/27 15:00:59 by adian            ###   ########.fr       */
+/*   Updated: 2023/03/27 13:41:02 by adian            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ Brain::Brain(const Brain &copy)
 
     this->_ideas = new std::string[100];
     *this = copy;
-
+    /*for (int i = 0; i < 100; i++)
+        (this->_ideas[i]) = (copy._ideas[i]); */
 }
 
 Brain&  Brain::operator=(const Brain &copy)

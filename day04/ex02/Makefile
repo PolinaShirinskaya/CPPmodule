@@ -1,14 +1,15 @@
-NAME			= brain
+NAME			= abstract
 
 CC				= clang++
 
-FLAGS			= -v -Wall -Wextra -Werror -std=c++98 -ggdb -fsanitize=address -fsanitize=leak
+FLAGS			= -v -Wall -Wextra -Werror -std=c++98 
+#-ggdb -fsanitize=address -fsanitize=leak
 
 RM				= rm -rf
 
 HEADERS_DIR 	= includes
 
-HEADERS_LIST	=	Animal.hpp \
+HEADERS_LIST	=	AAnimal.hpp \
 					Cat.hpp \
 					Dog.hpp \
 					Brain.hpp
@@ -18,7 +19,7 @@ HEADERS			=	$(addprefix $(HEADERS_DIR)/,$(HEADERS_LIST))
 SRCS_DIR		=	srcs
 
 SRCS_LIST		=	main.cpp \
-					Animal.cpp \
+					AAnimal.cpp \
 					Cat.cpp \
 					Dog.cpp \
 					Brain.cpp

@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   Brain.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adian <adian@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/26 14:21:52 by adian             #+#    #+#             */
-/*   Updated: 2023/03/27 14:23:02 by adian            ###   ########.fr       */
+/*   Created: 2023/03/27 10:56:16 by adian             #+#    #+#             */
+/*   Updated: 2023/03/27 13:17:26 by adian            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_HPP
-# define ANIMAL_HPP
+#ifndef BRAIN_HPP
+# define BRAIN_HPP
 # include <iostream>
 
 # define NORMAL	"\033[0m"
@@ -21,19 +21,20 @@
 # define VIOLET	"\033[1;35m"
 # define CYAN	"\033[1;36m"
 
-class Animal
+
+class Brain
 {
-	protected:
-		std::string	_type;
+    private:
+		std::string* _ideas;
 	
 	public:
-		Animal();
-		Animal(const Animal &copy);
-		Animal& operator=(const Animal &src);
-		virtual ~Animal();
+		Brain();
+		Brain(const Brain &copy);
+		Brain& operator=(const Brain &copy);
+		~Brain();
 
-		std::string			getType()const;
-		virtual void		makeSound() const;
+		std::string const		&getIdeaByIndex(unsigned int const index) const;
+		void					setIdeaByIndex(std::string idea, unsigned int index);
 };
 
 #endif
