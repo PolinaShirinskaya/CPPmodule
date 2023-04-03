@@ -6,7 +6,7 @@
 /*   By: adian <adian@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:36:01 by adian             #+#    #+#             */
-/*   Updated: 2023/04/01 14:13:23 by adian            ###   ########.fr       */
+/*   Updated: 2023/04/03 13:31:58 by adian            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define BUREAUCRAT_HPP
 
 # include <iostream>
+# include "Form.hpp"
 
 # define NORMAL	"\033[0m"
 # define RED	"\033[1;31m"
@@ -25,6 +26,8 @@
 
 # define MAX_GRADE 1
 # define MIN_GRADE 150
+
+class Form;
 
 class Bureaucrat
 {
@@ -44,6 +47,7 @@ class Bureaucrat
 
         void                incrementGrade();
         void                decrementGrade();
+        void                signForm(Form &form) const;
 
         class GradeTooHighException : public std::exception
         {
