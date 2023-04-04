@@ -6,7 +6,7 @@
 /*   By: adian <adian@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 14:21:10 by adian             #+#    #+#             */
-/*   Updated: 2023/04/04 16:55:37 by adian            ###   ########.fr       */
+/*   Updated: 2023/04/03 13:49:51 by adian            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,11 @@
 
 int main()
 {
-   	try
+    try
     {
         Bureaucrat  bureaucrat("Bob", 5);
-        Form        form1("26B", 20, 12);
-        Form        form2("1A", 2, 3);
-		Form		form3(form1);
-		Form		form4;
-		form4 = form2;
+        Form        form1("821b123KKK0l", 20, 12);
+        Form        form2("llll11l1l1l3", 2, 3);
 
         std::cout << "---------------------------------------------------------------------------" << std::endl;
 
@@ -58,4 +55,5 @@ int main()
     {
         std::cout << e.what() << '\n';
     }
+    
 }

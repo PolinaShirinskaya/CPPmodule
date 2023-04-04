@@ -6,7 +6,7 @@
 /*   By: adian <adian@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 14:02:02 by adian             #+#    #+#             */
-/*   Updated: 2023/04/04 16:52:06 by adian            ###   ########.fr       */
+/*   Updated: 2023/04/03 13:37:45 by adian            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,6 @@ class Form
         bool                getIsSign() const;
         int                 getSignGrade() const;
         int                 getExecuteGrade() const;
-        void                setName(std::string const name);
-        void                setSignGrade(int grade);
-        void                setExecuteGrade(int grade);
 
         void                beSigned(const Bureaucrat &bureaucrat);
 
@@ -49,12 +46,6 @@ class Form
         };
 
         class GradeTooLowException : public std::exception
-        {
-            public:
-                char const *what() const throw();
-        };
-
-        class AlreadySignedException : public std::exception
         {
             public:
                 char const *what() const throw();

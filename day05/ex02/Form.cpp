@@ -6,7 +6,7 @@
 /*   By: adian <adian@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 14:28:46 by adian             #+#    #+#             */
-/*   Updated: 2023/04/04 16:54:45 by adian            ###   ########.fr       */
+/*   Updated: 2023/04/03 13:41:13 by adian            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,24 +55,10 @@ Form::Form(const Form &copy)
 
 Form    &Form::operator=(const Form &copy) 
 { 
-     std::cout
-        << GREEN
-        << "Form Copy assignment operator called"
-        << NORMAL << std::endl;
-
     if (this == &copy)
         return (*this);
-
-    if (copy.getSignGrade() < MAX_GRADE || copy.getExecuteGrade() < MAX_GRADE)
-		throw Form::GradeTooHighException();
-	if (copy.getSignGrade() > MIN_GRADE || copy.getExecuteGrade() > MIN_GRADE)
-		throw Form::GradeTooLowException();
-
-    this->setName(copy.getName());
-    this->_isSigned = copy.getIsSign();
-    this->setSignGrade(copy.getSignGrade());
-    this->setExecuteGrade(copy.getExecuteGrade());
-    return (*this);
+    else
+        return(*this); 
 }
 
 Form::~Form() { std::cout << GREEN << "Form Destructor called" << NORMAL << std::endl; }
@@ -81,9 +67,7 @@ Form::~Form() { std::cout << GREEN << "Form Destructor called" << NORMAL << std:
 //beSigned function
 void	Form::beSigned(const Bureaucrat &bureaucrat)
 {
-	if (_isSigned)
-        throw Form::AlreadySignedException();
-    if (bureaucrat.getGrade() <= _signGrade)
+	if (bureaucrat.getGrade() <= _signGrade)
         _isSigned = true;
     else 
         throw Form::GradeTooLowException();
@@ -99,24 +83,6 @@ int					Form::getSignGrade() const { return (_signGrade); }
 
 int					Form::getExecuteGrade() const { return (_executeGrade); }
 
-void                Form::setName(std::string const name)
-{
-    std::string	*tmp = (std::string *)&this->_name;
-	*tmp = name;
-}
-
-void	Form::setSignGrade(int grade)
-{
-	int	*tmp = (int *)&this->_signGrade;
-	*tmp = grade;
-}
-
-void	Form::setExecuteGrade(int grade)
-{
-	int	*tmp = (int *)&this->_executeGrade;
-	*tmp = grade;
-}
-
 
 //exceptions
 char const	*Form::GradeTooHighException::what() const throw()
@@ -129,13 +95,6 @@ char const	*Form::GradeTooLowException::what() const throw()
     return ("Form grade is too low!!!");
 }
 
-char const	*Form::AlreadySignedException::what() const throw()
-{
-    return ("Form is already signed!!!");
-}
-
-
-// overload << operator
 std::ostream    &operator<<(std::ostream &out,  const Form &form)
 {
     out 
