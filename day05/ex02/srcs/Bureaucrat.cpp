@@ -6,11 +6,11 @@
 /*   By: adian <adian@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 13:45:13 by adian             #+#    #+#             */
-/*   Updated: 2023/04/03 13:31:33 by adian            ###   ########.fr       */
+/*   Updated: 2023/04/04 18:42:39 by adian            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Bureaucrat.hpp"
+#include "../includes/Bureaucrat.hpp"
 
 
 Bureaucrat::Bureaucrat() 
@@ -122,7 +122,7 @@ std::ostream    &operator<<(std::ostream &out, Bureaucrat const &src)
     return (out);
 }
 
-void    Bureaucrat::signForm(Form &form) const
+void    Bureaucrat::signForm(AForm &form) const
 {
     try
     {
@@ -133,5 +133,26 @@ void    Bureaucrat::signForm(Form &form) const
     {
         std::cout << this->getName() << " couldn't sign " << form.getName();
         std::cout << " because " << excecption.what() << std::endl;
+    }
+}
+
+void    Bureaucrat::executeForm(AForm const &form) const
+{
+    try
+    {
+        form.execute(*this);
+        std::cout
+            << BLUE << this->getName()
+            << " execute " << form.getName()
+            << NORMAL << std::endl;
+
+    }
+    catch(const std::exception &exc)
+    {
+        std::cout
+            << BLUE << this->getName()
+            << " can't executed " << form.getName()
+            << NORMAL << std::endl;
+        std::cout << " because " << exc.what() << NORMAL << std::endl;
     }
 }

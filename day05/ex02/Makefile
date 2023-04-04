@@ -1,34 +1,68 @@
-NAME	= form
+NAME			= forms
 
-SRCS	= $(wildcard *.cpp)
+CC				= clang++
 
-HEADERS = $(wildcard *.hpp)
+FLAGS			= -v -Wall -Wextra -Werror -std=c++98 
+#-ggdb -fsanitize=address -fsanitize=leak
 
-CC		= clang++
+RM				= rm -rf
 
-FLAGS	= -Wall -Wextra -Werror -std=c++98 -I.
+HEADERS_DIR 	= includes
 
-RM		= rm -f
+HEADERS_LIST	=	AForm.hpp \
+					Bureaucrat.hpp \
+					ShrubberyCreationForm.hpp \
+					RobotomyRequestForm.hpp \
+					PresidentialPardonForm.hpp
 
-OBJS	= $(SRCS:.cpp=.o)
+HEADERS			=	$(addprefix $(HEADERS_DIR)/,$(HEADERS_LIST))
 
-all: $(NAME)
+SRCS_DIR		=	srcs
 
-$(NAME): $(OBJS) $(HEADERS)
-		@$(CC) $(FLAGS) $(OBJS) -o $(NAME)
-		@echo "\033[1;35mCompiled"
+SRCS_LIST		=	AForm.cpp \
+					Bureaucrat.cpp \
+					ShrubberyCreationForm.cpp \
+					RobotomyRequestForm.cpp \
+					PresidentialPardonForm.cpp \
+					main.cpp
 
-%.o: %.cpp
-		@$(CC) $(FLAGS) -c $< -o $@
+SRCS		=	$(addprefix $(OBJS_DIR)/,$(SRCS_LIST))
 
-clean:
-		@$(RM) $(OBJS)
-		@echo "\033[1;34mClean"
+OBJS_DIR	=	objs
 
-fclean: clean
-		@$(RM) $(NAME)
-		@echo "\033[1;34mFclean"
+OBJS		=	$(addprefix $(OBJS_DIR)/,$(SRCS_LIST:.cpp=.o))
 
-re: fclean all
+NORMAL			=	\033[0m
+RED				=	\033[1;31m
+GREEN			=	\033[1;32m
+YELLOW			=	\033[1;33m
+BLUE			=	\033[1;34m
+CYAN			=	\033[1;36m
+WHITE			=	\033[1;37m
+
+
+all : $(OBJS_DIR) $(NAME)
+
+$(NAME) : $(OBJS)
+	@$(CC) $(CFLAGS) $^ -o $@
+	@echo "$(GREEN)Project succesfully compiled$(NORMAL)"
+
+$(OBJS_DIR)/%.o : $(SRCS_DIR)/%.cpp $(HEADERS) Makefile
+	@$(CC) $(CFLAGS) -c $< -o $@
+	@echo "$(BLUE)Creating object file$(WHITE) --> $(notdir $@) --> $(GREEN)[Done]$(NORMAL)"
+
+$(OBJS_DIR) :
+	@mkdir -p objs
+	@echo "$(CYAN)Creating directory for objects file:$(WHITE) $(GREEN)[Done]$(NORMAL)"
+
+clean :
+	@$(RM) $(OBJS_DIR)
+	@echo "$(YELLOW)Removing objects files$(WHITE) --> *.o --> $(GREEN)[Done]$(NORMAL)"
+
+fclean : clean
+	@$(RM) $(NAME)
+	@echo "$(YELLOW)Removing perfoming file$(WHITE) --> $(NAME) --> $(GREEN)[Done]$(NORMAL)"
+
+re : fclean all
 
 .PHONY: all clean fclean re
