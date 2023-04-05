@@ -1,4 +1,4 @@
-NAME			= forms
+NAME			= intern
 
 CC				= clang++
 
@@ -13,7 +13,8 @@ HEADERS_LIST	=	AForm.hpp \
 					Bureaucrat.hpp \
 					ShrubberyCreationForm.hpp \
 					RobotomyRequestForm.hpp \
-					PresidentialPardonForm.hpp
+					PresidentialPardonForm.hpp \
+					Intern.hpp
 
 HEADERS			=	$(addprefix $(HEADERS_DIR)/,$(HEADERS_LIST))
 
@@ -24,6 +25,7 @@ SRCS_LIST		=	AForm.cpp \
 					ShrubberyCreationForm.cpp \
 					RobotomyRequestForm.cpp \
 					PresidentialPardonForm.cpp \
+					Intern.cpp \
 					main.cpp
 
 SRCS		=	$(addprefix $(OBJS_DIR)/,$(SRCS_LIST))
