@@ -2,8 +2,7 @@ NAME			= intern
 
 CC				= clang++
 
-FLAGS			= -Wall -Wextra -Werror -std=c++98 
-#-ggdb -fsanitize=address -fsanitize=leak
+FLAGS			= -Wall -Wextra -Werror -std=c++98 -ggdb -fsanitize=address -fsanitize=leak
 
 RM				= rm -rf
 
