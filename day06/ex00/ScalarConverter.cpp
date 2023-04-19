@@ -220,7 +220,7 @@ std::ostream    &operator<<( std::ostream &out, const ScalarConverter &output ) 
 
 void    ScalarConverter::printInt() const {
     if (this->isLiterals() || 
-        ( !std::isprint(_int) && (_int >= 127)))
+        (_int >= INT_MAX) || (_int <= INT_MIN))
             std::cout << "impossible";
     else
         std::cout << getInt();

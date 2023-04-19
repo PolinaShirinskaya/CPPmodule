@@ -6,7 +6,7 @@
 /*   By: adian <adian@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 13:09:13 by adian             #+#    #+#             */
-/*   Updated: 2023/04/18 19:04:06 by adian            ###   ########.fr       */
+/*   Updated: 2023/04/19 11:28:22 by adian            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define SCALARCONVERTER_HPP
 
 # include <iostream>
+# include <climits>
 
 enum e_type {
     NOTYPE,
