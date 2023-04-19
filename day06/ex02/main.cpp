@@ -1,0 +1,45 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adian <adian@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/19 13:45:40 by adian             #+#    #+#             */
+/*   Updated: 2023/04/19 13:57:35 by adian            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "Base.hpp"
+
+int     main( void )
+{
+    Base*   a = generate();
+    Base*   b = generate();
+    Base*   c = generate();
+    Base*   d = generate();
+
+    std::cout << "/* **************************************** */" << std::endl;
+
+    std::cout << "a* = "; identify(a);
+    std::cout << "a& = "; identify(*a); std::cout << std::endl;
+
+    std::cout << "b* = "; identify(b);
+    std::cout << "b& = "; identify(*b); std::cout << std::endl;
+
+    std::cout << "c* = "; identify(c);
+    std::cout << "c& = "; identify(*c); std::cout << std::endl;
+
+    std::cout << "d* = "; identify(d);
+    std::cout << "d& = "; identify(*d); std::cout << std::endl;
+
+    std::cout << "/* ***************************************** */" << std::endl;
+
+
+    delete a;
+    delete b;
+    delete c;
+    delete d;
+
+    return (0);
+}
