@@ -1,8 +1,8 @@
-NAME	= serialize
+NAME	= serializer
 
 SRCS	= $(wildcard *.cpp)
 
-HEADERS = Data.hpp
+HEADERS = Serializer.hpp
 
 CC		= c++
 

@@ -6,31 +6,22 @@
 /*   By: adian <adian@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 12:50:11 by adian             #+#    #+#             */
-/*   Updated: 2023/04/19 13:13:01 by adian            ###   ########.fr       */
+/*   Updated: 2023/04/21 14:03:33 by adian            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Data.hpp"
+#include "Serializer.hpp"
 
 int main()
 {
-    Data      obj;
-    Data      *ptr = NULL;
-    uintptr_t num;
+    Data *start = new Data;
+    start->str = "Yes... stop screaming";
+    
+    uintptr_t test1 = Serializer::serialize(start);
+    std::cout << "Hey!\t\t" << test1<< std::endl;
 
-    std::cout
-        << "Test Object before serialize (* ->> unsigned int):"
-        << obj.str
-        << std::endl;
-    num = obj.serialize(&obj);
+    Data *test2 = Serializer::deserialize(test1);
+    std::cout << "Heeeeey!\t" << test2->str << std::endl;
 
-    std::cout
-        << "Test Object after serialize (* ->> unsigned int):"
-        << num
-        << std::endl;
-    ptr = obj.deserialize(num);
-    std::cout
-        << "String after deserialize (unsigned int ->> *):"
-        << ptr->str
-        << std::endl;
+    delete start;
 }

@@ -1,32 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Data.hpp                                           :+:      :+:    :+:   */
+/*   Serializer.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adian <adian@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/19 12:55:17 by adian             #+#    #+#             */
-/*   Updated: 2023/04/19 12:56:06 by adian            ###   ########.fr       */
+/*   Created: 2023/04/21 13:01:11 by adian             #+#    #+#             */
+/*   Updated: 2023/04/21 13:52:05 by adian            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DATA_HPP
-# define DATA_HPP
+#ifndef SERIALIZER_HPP
+# define SERIALIZER_HPP
 
 # include <iostream>
 
-class	Data
+typedef struct Data {
+	std::string str;
+} Data;
+
+class	Serializer
 {
+	private:
+		Serializer(void);
+		Serializer(Serializer const &copy);
+		Serializer	&operator=(Serializer const &copy);
+		~Serializer(void);
+	
 	public:
-		std::string	str;
-
-		Data(void);
-		Data(Data const &copy);
-		Data&		operator=(Data const &data);
-		~Data(void);
-
-		uintptr_t	serialize(Data *ptr);
-		Data*		deserialize(uintptr_t raw);
+		static uintptr_t	serialize(Data *ptr);
+		static Data*		deserialize(uintptr_t raw);
 };
 
 #endif

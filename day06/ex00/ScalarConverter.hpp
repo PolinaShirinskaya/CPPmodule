@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: adian <adian@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/18 13:09:13 by adian             #+#    #+#             */
-/*   Updated: 2023/04/19 11:28:22 by adian            ###   ########.fr       */
+/*   Created: 2023/04/21 10:31:13 by adian             #+#    #+#             */
+/*   Updated: 2023/04/21 12:47:00 by adian            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,87 +14,72 @@
 # define SCALARCONVERTER_HPP
 
 # include <iostream>
-# include <climits>
+# include <limits>
 
-enum e_type {
-    NOTYPE,
-    INT,
-    FLOAT, 
-    DOUBLE,
-    CHAR,
-    LITERALS
+enum inputType {
+    normal, //int char float double
+    negInf, //-inf -inff
+    posInf, //+inf +inff
+    nan     //nan
 };
 
-class ScalarConverter
-{
+class ScalarConverter {
     private:
-        char        _char;
-        int         _int;
-        float       _float;
-        double      _double;
+        ScalarConverter();
+        ScalarConverter(const ScalarConverter & copy);
+        ~ScalarConverter();
+        ScalarConverter & operator=(const ScalarConverter & copy);
 
-        bool        _invalid;
-        
-        std::string _input;
-        e_type      _type;
+        static  inputType       _inputType;
+        static  bool            _hasQuote;
 
+        static  void    checkInfinity(const std::string &input);
+        static  bool    checkExponent(const std::string & input);
+        static  bool    checkQuote(const std::string & input);
+        static  bool    parseProcess(const std::string &input);
 
     public:
-        ScalarConverter();
-        ScalarConverter(ScalarConverter const &copy);
-        ScalarConverter &operator=(ScalarConverter const &copy);
-        ~ScalarConverter();
+        static  char    convertToChar(const std::string & input);
+        static  int     convertToInt(const std::string & input);
+        static  float   convertToFloat(const std::string & input);
+        static  double  convertToDouble(const std::string & input);
 
-        //Main method for our exercise
-        void    convert();
+        static  bool    printChar(const std::string & input);
+        static  bool    printInt(const std::string & input);
+        static  bool    printFloat(const std::string & input);
+        static  bool    printDouble(const std::string & input);
+        static  bool    convertAll(const std::string & input);
 
-        //GETters and SETters
-        char    getChar() const;
-        void    setChar(char c);
 
-        int     getInt() const;
-        void    setInt(int n);
-
-        float   getFloat() const;
-        void    setFloat(float f);
-
-        double  getDouble() const;
-        void    setDouble(double d);
-
-        std::string     getInput() const;
-        void            setInput( std::string input );
-
-        e_type   getType() const;
-        void     setType();
-
-        //Methods for Define Type of Input String
-        bool    isInt() const;
-        bool    isChar() const;
-        bool    isFloat() const;
-        bool    isDouble() const;
-        bool    isLiterals() const;
-
-        bool    isInvalid();
-
-        //Exceptions
-        class ConverterException : public std::exception
-        {
-            virtual const char *what() const throw();
+        class  DataIsNotDigit: public std::exception {
+                public:
+                    virtual const char * what( void ) const throw();
         };
 
-        class InvalidAmountInputArgs : public std::exception
-        {
-            virtual const char *what() const throw();
+        class  ImpossiblePrint: public std::exception {
+                public:
+                    virtual const char * what( void ) const throw();
         };
 
+        class  NonPrintableChar : public std::exception {
+                public:
+                    virtual const char * what( void ) const throw();
+        };
 
-        //Methods for printintig output infornation
-        void    printChar() const;
-        void    printInt() const;
-        void    printFloat() const;
-        void    printDouble() const;
+        class  OpenQuotes : public std::exception {
+                public:
+                    virtual const char * what( void ) const throw();
+        };
+
+        class  InvalidChar: public std::exception {
+                public:
+                    virtual const char * what( void ) const throw();
+        };
+
+        class  NumberOutsideRange : public std::exception {
+                public:
+                    virtual const char * what( void ) const throw();
+        };
 };
-
-std::ostream &operator<<(std::ostream &out, const ScalarConverter &output);
 
 #endif

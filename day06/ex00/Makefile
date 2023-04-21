@@ -1,4 +1,4 @@
-NAME	= converter
+NAME	= convert
 
 SRCS	= $(wildcard *.cpp)
 
