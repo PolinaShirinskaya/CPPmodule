@@ -6,7 +6,7 @@
 /*   By: adian <adian@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 10:39:00 by adian             #+#    #+#             */
-/*   Updated: 2023/04/21 12:55:06 by adian            ###   ########.fr       */
+/*   Updated: 2023/04/21 15:56:19 by adian            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,8 @@ bool    ScalarConverter::printChar(const std::string & input) {
 }
 
 char    ScalarConverter::convertToChar(const std::string & input) {
-    char ret;
+    char res = '\0';
+    int  ret = 0;
 
     if (ScalarConverter::_inputType != normal)
         throw ScalarConverter::ImpossiblePrint();
@@ -138,16 +139,15 @@ char    ScalarConverter::convertToChar(const std::string & input) {
             throw InvalidChar();
         return (cleanedInput[0]);
     }
-        
-    try {
-        ret = static_cast<char>(ScalarConverter::convertToInt(cleanedInput));
-    }
-    catch (std::exception & e) {
-        throw ScalarConverter::InvalidChar();
-    }
-    if (!std::isprint(ret))
+
+    ret = ScalarConverter::convertToInt(cleanedInput);
+    if (!std::isprint(ret) && ret <= 33)
         throw ScalarConverter::NonPrintableChar();
-    return (ret);
+    else if (ret >= 127)
+        throw ScalarConverter::ImpossiblePrint();
+    else
+        res = static_cast<char>(ret);
+    return (res);
 }
 
 //function for convert and print INT
