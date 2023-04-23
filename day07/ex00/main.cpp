@@ -6,12 +6,12 @@
 /*   By: adian <adian@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 17:27:40 by adian             #+#    #+#             */
-/*   Updated: 2023/04/21 17:47:03 by adian            ###   ########.fr       */
+/*   Updated: 2023/04/21 18:20:52 by adian            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "whatever.hpp"
-#include "SomeClass.hpp"
+#include "AwesomeClass.hpp"
 
 int	main()
 {
@@ -54,7 +54,7 @@ int	main()
     std::cout << "-------------------------CLASS------------------------" << std::endl;
 
 	{
-		SomeClass	a(2), b(4);
+		AwesomeClass	a(2), b(4);
 
 		std::cout << "a = " << a << " | " << "b = " << b << std::endl;
 		::swap(a, b);
