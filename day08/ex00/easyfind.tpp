@@ -1,22 +1,10 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   easyfind.tpp                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: adian <adian@student.42.fr>                +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/26 20:03:48 by adian             #+#    #+#             */
-/*   Updated: 2023/04/26 20:11:21 by adian            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef EASYFIND_TPP
 # define EASYFIND_TPP
 
 # include "easyfind.hpp"
 
 # ifndef EASYFIND_HPP
-# error easyfind.tpp should be included from easyfind.hpp
+#  error easyfind.tpp should be included from easyfind.hpp
 # endif
 
 template<typename T>
