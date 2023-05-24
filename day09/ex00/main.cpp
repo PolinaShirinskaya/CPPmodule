@@ -6,7 +6,7 @@
 /*   By: adian <adian@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 17:29:40 by adian             #+#    #+#             */
-/*   Updated: 2023/05/23 17:49:35 by adian            ###   ########.fr       */
+/*   Updated: 2023/05/24 19:56:03 by adian            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,4 @@ int main (int argc, char **argv) {
     }
 
     processInput(argv[1], processData());
-    
 }
