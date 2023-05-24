@@ -6,49 +6,93 @@
 /*   By: adian <adian@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 17:32:46 by adian             #+#    #+#             */
-/*   Updated: 2023/05/22 21:08:30 by adian            ###   ########.fr       */
+/*   Updated: 2023/05/24 17:35:09 by adian            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
 
-void parceInput(std::string inputFile) {
+bool isValidDateFormat(const std::string &date) {
+    if (date.length() != 11)
+        return false;
+
+    if (date[4] != '-' || date[7] != '-')
+        return false;
+
+    for (int i = 0; i < 10; ++i) {
+        if (i == 4 || i == 7)
+            continue;
+
+        if (date[i] < '0' || date[i] > '9')
+            return false;
+    }
+
+    return true;
+}
+
+double findRate(std::string date, std::map<std::string, double> data) {
+    std::map<std::string, double>::iterator it = data.lower_bound(date);
+    if (date != it->first) {
+        --it;
+    }
+    return it->second;
+}
+
+void processInput(std::string file, std::map<std::string, double> data) {
     
-    std::ifstream file(inputFile);
-    if (!file) {
-        std::cerr << "Error: Fail open " << inputFile << " file." << std::endl;
+    std::ifstream inputFile(file);
+    if (!inputFile) {
+        std::cerr << "Error: Fail open " << file << " file." << std::endl;
         exit (1);
     }
 
+    std::string line;
+
     //check first line, it must be in 'data | value' format
-    std::string firstLine;
-    std::getline(file, firstLine);
-    std::cout << "FirstLine: " << firstLine << std::endl;
-    if (firstLine != "date | value") {
-        std::cerr << "Error: First line of " << inputFile << " isn't in the 'date | value' format." << std::endl;
+    std::getline(inputFile, line);
+    if (line != "date | value") {
+        std::cerr << "Error: First line of " << file << " isn't in the 'date | value' format." << std::endl;
         exit (1);
     }
 
     //check other lines of input.txt
-    std::string nextLine;
-    while (std::getline(file, nextLine)) {
-        std::cout << "NextLine: " << nextLine << std::endl;
-        std::istringstream ss(nextLine);
+    while (std::getline(inputFile, line)) {
+        size_t separartorPos = line.find('|');
+        if (separartorPos == std::string::npos) {
+            std::cerr << "Error: bad input => " << line << " (missing separator)" <<std::endl;
+            continue ;
+        }
 
-        long yearValue = std::stol(nextLine.substr(0, 4));
-        long monthValue = std::stol(nextLine.substr(5, 2));
-        long dayValue = std::stol(nextLine.substr(8, 2));
-        long valueValue = std::stol(nextLine.substr(13, (nextLine.size() - 13)));
+        std::string date = line.substr(0, separartorPos);
+        std::string value = line.substr(separartorPos + 1);
 
-        std::cout << "Year: " << yearValue << std::endl;
-        std::cout << "Month: " << monthValue << std::endl;
-        std::cout << "Day: " << dayValue << std::endl;
-        std::cout << "Value: " << valueValue << std::endl;
+        //check valid of DATE
+        if (!isValidDateFormat(date)) {
+            std::cerr << "Error: bad input => " << line << std::endl;
+            continue ;
+        }
 
+        //check valid of VALUE
+        double numValue = std::stod(value);
+		if (numValue < 0) {
+			std::cout << "Error: not a positive number." << std::endl;
+			continue;
+		}
+		if (numValue > 1000) {
+			std::cout << "Error: too large a number." << std::endl;
+			continue;
+		}
+
+        //process with valid lines
+        if (numValue < 1000 && numValue > 0) {
+            double res = numValue * findRate(date, data);
+            std::cout << date << " => " << value << " = " << res << std::endl;
+        }
     }
+    inputFile.close();
 }
 
-/*std::map<std::string, double> readData() 
+std::map<std::string, double> processData() 
 {
     std::map<std::string, double> data;
 
@@ -58,6 +102,7 @@ void parceInput(std::string inputFile) {
         exit (1);
     }
 
+    //making map from file
     std::string line;
     std::getline(file, line);
     while (std::getline(file, line)) {
@@ -68,54 +113,5 @@ void parceInput(std::string inputFile) {
             data[date] = std::stod(rate);
         }
     }
-
-    std::map<std::string, double>::iterator it = data.begin();
-    // Iterate through the map and print the elements
-    //while (it != data.end())
-    int i = 0;
-    while (i <= 5)
-    {
-        std::cout << "Key: " << it->first << ", Value: " << it->second << std::endl;
-        ++it;
-        i++;
-    }
     return data;
 }
-
-void parceData(std::string file, std::map<std::string, double> data) {
-    
-    std::ifstream inputFile(file);
-    if (!inputFile) {
-        std::cerr << "Error: Fail open " << file << " file." << std::endl;
-        exit (1);
-    }
-
-    //check first line, it must be in 'data | value' format
-    std::string firstLine;
-    std::getline(inputFile, firstLine);
-    std::cout << "FirstLine: " << firstLine << std::endl;
-    if (firstLine != "date | value") {
-        std::cerr << "Error: First line of " << file << " isn't in the 'date | value' format." << std::endl;
-        exit (1);
-    }
-
-    //check other lines of input.txt
-    std::string nextLine;
-    while (std::getline(inputFile, nextLine)) {
-        std::cout << "NextLine: " << nextLine << std::endl;
-        std::istringstream ss(nextLine);
-
-        std::string key = data.begin()->first;
-
-        long yearValue = std::stol(key.substr(0, 4));
-        long monthValue = std::stol(key.substr(5, 2));
-        long dayValue = std::stol(key.substr(8, 2));
-
-        std::cout << "Year: " << yearValue << std::endl;
-        std::cout << "Month: " << monthValue << std::endl;
-        std::cout << "Day: " << dayValue << std::endl;
-
-
-    }
-    inputFile.close();
-}*/
