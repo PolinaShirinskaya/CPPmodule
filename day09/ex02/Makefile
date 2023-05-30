@@ -1,33 +1,42 @@
-NAME	= PMergeMe
+UNAME_S = $(shell uname -s)
 
-SRCS	= $(wildcard *.cpp)
+NAME =  PmergeMe
+
+SRC = $(wildcard *.cpp)
+
+CC = c++
+
+RM = rm -rf
+
+OBJ = $(SRC:.cpp=.o)
 
 HEADERS = $(wildcard *.hpp)
 
-CC		= c++
-
-FLAGS	= -Wall -Wextra -Werror -std=c++98 -I.
-
-RM		= rm -f
-
-OBJS	= $(SRCS:.cpp=.o)
+ifeq ($(UNAME_S), Linux)
+	CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -I.
+else
+	CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address -I.
+endif
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(HEADERS)
-		@$(CC) $(FLAGS) $(OBJS) -o $(NAME)
-		@echo "\033[1;35mCompiled"
+$(NAME): $(OBJ) Makefile $(HEADERS)
+	$(CC) $(CPPFLAGS) $(OBJ) -o $(NAME)
+	@echo ""
+	@echo "\033[1;32mCompiled"
 
 %.o: %.cpp
-		@$(CC) $(FLAGS) -c $< -o $@
+	$(CC) $(FLAGS) -c $< -o $@
+	@echo -n "\033[1;35m♥"==
 
 clean:
-		@$(RM) $(OBJS)
-		@echo "\033[1;34mClean"
+	$(RM) $(OBJ)
+	@echo "\033[1;31mClean"
 
 fclean: clean
-		@$(RM) $(NAME)
-		@echo "\033[1;34mFclean"
+	$(RM) $(NAME)
+	@$(RM) test1
+	@echo "\033[1;31mFclean"
 
 re: fclean all
 
